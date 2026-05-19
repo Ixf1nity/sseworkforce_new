@@ -11,8 +11,7 @@ import { useEffect } from 'react';
 export default function useSEO({ title, description, keywords }) {
   useEffect(() => {
     // 1. Update Document Title
-    const baseTitle = 'SSE Workforce Services Pvt Ltd';
-    document.title = title ? `${title} | ${baseTitle}` : baseTitle;
+    document.title = title ? `${title}` : 'SSE Workforce Services Private Limited';
 
     // 2. Update Meta Description
     let metaDescription = document.querySelector('meta[name="description"]');
