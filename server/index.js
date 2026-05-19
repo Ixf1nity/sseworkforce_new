@@ -1,5 +1,8 @@
 import 'dotenv/config';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
+import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -8,6 +11,10 @@ import { generateCsrfToken } from './middleware/csrf.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// ============================================
+// Gzip compression (Compresses response bodies for all requests)
+app.use(compression());
 
 // ============================================
 // Security Middleware
@@ -69,6 +76,47 @@ app.use('/api', mailRoutes);
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// ============================================
+// Serve Frontend & Static Assets with Expires Headers
+// ============================================
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve the compiled React application (dist folder)
+// The maxAge option sets both Cache-Control: public, max-age=... and the Expires header
+app.use(
+  express.static(path.join(__dirname, '../dist'), {
+    maxAge: '1y', // Cache static assets (JS, CSS, Images) for 1 year
+    setHeaders: (res, path) => {
+      // Add explicit Expires header for older clients
+      const expiresDate = new Date();
+      expiresDate.setFullYear(expiresDate.getFullYear() + 1);
+      res.setHeader('Expires', expiresDate.toUTCString());
+
+      // Do not cache the HTML file itself, so users always get the latest version pointing to new hashed assets
+      if (path.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+      }
+    },
+  })
+);
+
+// React Router Catch-All: Serve index.html for any non-API route
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+  res.sendFile(path.join(__dirname, '../dist/index.html'), {
+    headers: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    }
+  });
 });
 
 // ============================================
