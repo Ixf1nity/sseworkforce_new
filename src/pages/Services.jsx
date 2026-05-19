@@ -1,8 +1,15 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PageBanner from '../components/PageBanner';
+import useSEO from '../hooks/useSEO';
 
 function Services() {
+  useSEO({
+    title: 'Our Services | Technical Manpower Supply & Fabrication Solutions',
+    description: 'We provide skilled, semi-skilled, unskilled, and highly-skilled manpower outsourcing, precision fabrication, CO2/ARC welding, and talent acquisition across Maharashtra.',
+    keywords: 'technical manpower supply, labor supply services, skilled labor supply, semi-skilled workforce, unskilled manpower outsourcing, highly-skilled technical manpower, precision fabrication services, custom welding services, talent acquisition engineering, manpower pune, manpower chakan, manpower midc, manpower maharashtra, labour contractor pune, labour contractor chakan, labour contractor midc, labour contractor maharashtra, industrial manpower supply, industrial labour supply, chakan industrial area manpower, pune midc labour supplier, ranjangaon midc manpower, talegaon midc manpower supplier, bhosari midc labour contractor, welder supplier pune, fitter supplier chakan, co2 welder contractor pune, contract labour supply maharashtra, skilled worker supplier, semi skilled labour supply, helper supply chakan, workforce solutions maharashtra, fabrication job work chakan, industrial staffing supplier, plant operations manpower, sse workforce services'
+  });
+
   const location = useLocation();
 
   // Scroll to hash on mount

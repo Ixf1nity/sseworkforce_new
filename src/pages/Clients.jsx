@@ -1,6 +1,13 @@
 import PageBanner from '../components/PageBanner';
+import useSEO from '../hooks/useSEO';
 
 function Clients() {
+  useSEO({
+    title: 'Our Clients | Trusted Partner to Leading Industries',
+    description: 'SSE Workforce Services Private Limited is a trusted labor supplier and fabrication partner to leading companies, automotive plants, and engineering units in Maharashtra.',
+    keywords: 'sse workforce clients, trusted labor contractor, partner companies, industrial staffing partners, automobile clients, engineering partners, chakan midc companies, client list sse'
+  });
+
   const partners = [
     { src: 'partner1.webp' },
     { src: 'partner2.webp' },

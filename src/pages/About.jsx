@@ -1,6 +1,13 @@
 import PageBanner from '../components/PageBanner';
+import useSEO from '../hooks/useSEO';
 
 function About() {
+  useSEO({
+    title: 'About Us | 15+ Years of Workforce Excellence',
+    description: 'Learn about SSE Workforce Services Pvt Ltd (est. 2011). We specialize in skilled, semi-skilled, unskilled, and highly-skilled manpower supply, alongside industrial fabrication and job works.',
+    keywords: 'industrial workforce solutions, skilled labor supply, semi-skilled workforce, unskilled manpower outsourcing, highly-skilled technical manpower, industrial staffing services, factory labor contractors, precision fabrication services, job work contractor, technical staffing solutions, SSE Workforce, manpower supplier, manpower pune, labour contractor pune, chakan, midc, workforce, manpower'
+  });
+
   const whyChooseUs = [
     { icon: 'fas fa-history', text: 'Experienced Industry Presence Since 2011' },
     { icon: 'fas fa-user-shield', text: 'Trusted and Professional Workforce Solutions' },

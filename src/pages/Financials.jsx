@@ -1,4 +1,5 @@
 import PageBanner from '../components/PageBanner';
+import useSEO from '../hooks/useSEO';
 
 const financialData = [
   { year: '2025-26', revenue: '₹83.27 Cr', growth: '+50.6%', label: 'Audited' },
@@ -19,6 +20,12 @@ const financialData = [
 ];
 
 function Financials() {
+  useSEO({
+    title: 'Our Financials | Solid Financial Standing & Solvency',
+    description: 'Review the audited financial performance of SSE Workforce Services Private Limited. Discover our solid financial standing with revenue reaching ₹83.27 Cr in FY 2025-26.',
+    keywords: 'sse workforce financials, corporate revenue, audited financial statements, labor contractor growth, financial stability labor supplier, financial records'
+  });
+
   return (
     <>
       <PageBanner title="Financials" breadcrumbs={[{ label: 'Financials' }]} />

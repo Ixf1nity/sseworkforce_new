@@ -1,7 +1,14 @@
 import PageBanner from '../components/PageBanner';
 import ContactForm from '../components/ContactForm';
+import useSEO from '../hooks/useSEO';
 
 function Contact() {
+  useSEO({
+    title: 'Contact Us | Get a Workforce Consultation',
+    description: 'Contact SSE Workforce Services Private Limited corporate office in Chakan MIDC, Pune. Reach us at +917498914626 or enquiry@sseworkforce.com for industrial staffing solutions.',
+    keywords: 'contact sse workforce, sse office chakan midc, manpower agency contact number, labour contractor office pune, contact workforce supplier, hire staff pune contact'
+  });
+
   return (
     <>
       <PageBanner

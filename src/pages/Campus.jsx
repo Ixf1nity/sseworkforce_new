@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import PageBanner from '../components/PageBanner';
+import useSEO from '../hooks/useSEO';
 
 const API_BASE = 'http://localhost:3001';
 
 function Campus() {
+  useSEO({
+    title: 'Campus Recruitment & Placement | Institutional Partnerships',
+    description: 'Partner with SSE Workforce Services Private Limited for institutional hiring and campus placement drives. Connecting ITI, Diploma, and BTech graduates with leading manufacturing employers in Maharashtra.',
+    keywords: 'campus placement maharashtra, college recruitment drives, ITI placement pune, diploma hiring chakan, hire freshers manufacturing, training and placement pune, college placement agency, sse recruitment, placement drives, freshers recruitment'
+  });
   const [formData, setFormData] = useState({
     representative_name: '',
     designation: '',

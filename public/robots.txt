@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sseworkforce.com
+
+# Sitemap Link
+Sitemap: https://sseworkforce.com/sitemap.xml

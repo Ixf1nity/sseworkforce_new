@@ -1,6 +1,13 @@
 import PageBanner from '../components/PageBanner';
+import useSEO from '../hooks/useSEO';
 
 function Gallery() {
+  useSEO({
+    title: 'Our Gallery | Industrial Operations & Workforce in Action',
+    description: 'View our visual gallery showcasing SSE Workforce Services Private Limited\'s skilled laborers, engineering teams, custom fabrication job sites, and industrial operations in Maharashtra.',
+    keywords: 'sse workforce gallery, industrial labor images, fabrication shop photos, contract workers in action, on-site labor photos, industrial safety photos, chakan midc workplace gallery, pune labor supply photos'
+  });
+
   const images = [
     { src: '/images/img1.webp', alt: 'Gallery 1' },
     { src: '/images/img2.webp', alt: 'Gallery 2' },

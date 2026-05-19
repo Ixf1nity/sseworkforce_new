@@ -1,6 +1,13 @@
 import PageBanner from '../components/PageBanner';
+import useSEO from '../hooks/useSEO';
 
 function LeadershipTeam() {
+  useSEO({
+    title: 'Our Leadership | Consolidated experience of over 40+ years',
+    description: 'Meet the executive leadership team, directors, and operations managers of SSE Workforce Services, bringing a consolidated experience of over 40+ years in industrial workforce management across Maharashtra.',
+    keywords: 'our leadership, sse workforce directors, hanumant bawkar, malharee sutar, hanumant sutar, ramesh sutar, industrial management team, workforce operations maharashtra, executive board'
+  });
+
   const leaders = [
     {
       name: 'Hanumant Bawkar',
