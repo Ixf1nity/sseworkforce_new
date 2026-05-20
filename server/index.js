@@ -106,7 +106,7 @@ app.use(
 );
 
 // React Router Catch-All: Serve index.html for any non-API route
-app.get('*', (req, res, next) => {
+app.get('/{*splat}', (req, res, next) => {
   if (req.path.startsWith('/api')) {
     return next();
   }
