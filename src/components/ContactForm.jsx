@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_BASE = '';
+const API_BASE = process.env.API_BASE;
 
 function ContactForm() {
   const [formData, setFormData] = useState({
