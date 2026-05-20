@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = '';
 
 function CareerForm() {
   const [formData, setFormData] = useState({

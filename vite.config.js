@@ -4,6 +4,15 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: process.env.API_BASE,
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   build: {
     // Increase the limit for inlining assets as base64 URLs to reduce HTTP requests
     // Assets smaller than 10KB will be inlined.

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PageBanner from '../components/PageBanner';
 import useSEO from '../hooks/useSEO';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = '';
 
 function Campus() {
   useSEO({
