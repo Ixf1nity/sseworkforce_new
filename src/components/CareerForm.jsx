@@ -62,7 +62,7 @@ function CareerForm() {
 
     setSubmitting(true);
     try {
-      const res = await fetch(`${API_BASE}/api/career`, {
+      const res = await fetch(`http://87.76.191.18:3001/api/career`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

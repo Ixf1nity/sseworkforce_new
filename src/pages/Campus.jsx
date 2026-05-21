@@ -88,7 +88,7 @@ function Campus() {
 
     setSubmitting(true);
     try {
-      const res = await fetch(`${API_BASE}/api/campus`, {
+      const res = await fetch(`http://87.76.191.18:3001/api/campus`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
