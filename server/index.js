@@ -29,9 +29,9 @@ app.use(compression());
 // Helmet — HTTP security headers (CSP, HSTS, X-Frame-Options, etc.)
 app.use(helmet());
 
-// CORS — only allow frontend origin
+// CORS — allow all origins by reflecting the request origin
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: true,
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
 }));
