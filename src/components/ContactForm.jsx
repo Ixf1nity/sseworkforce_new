@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const API_BASE = process.env.API_BASE;
 
@@ -12,7 +13,6 @@ function ContactForm() {
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [toast, setToast] = useState(null);
 
   const validate = () => {
     const errs = {};
@@ -46,11 +46,6 @@ function ContactForm() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const showToast = (type, msg) => {
-    setToast({ type, msg });
-    setTimeout(() => setToast(null), 4000);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
@@ -69,25 +64,19 @@ function ContactForm() {
       const data = await res.json();
 
       if (data.success) {
-        showToast('success', 'Message sent successfully!');
+        toast.success('Message sent successfully!');
         setFormData({ full_name: '', phone: '', email: '', subject: '', message: '' });
       } else {
-        showToast('error', data.message || 'Failed to send message.');
+        toast.error(data.message || 'Failed to send message.');
       }
     } catch {
-      showToast('error', 'Network error. Please try again later.');
+      toast.error('Network error. Please try again later.');
     }
     setSubmitting(false);
   };
 
   return (
     <>
-      {toast && (
-        <div className="toast-container">
-          <div className={`toast ${toast.type}`}>{toast.msg}</div>
-        </div>
-      )}
-
       <form onSubmit={handleSubmit} noValidate>
         <div className="row justify-content-center g-4">
           {/* Full Name */}

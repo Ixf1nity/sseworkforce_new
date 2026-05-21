@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const API_BASE = process.env.API_BASE;
 
@@ -14,7 +15,6 @@ function CareerForm() {
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [toast, setToast] = useState(null);
 
   const validate = () => {
     const errs = {};
@@ -52,11 +52,6 @@ function CareerForm() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const showToast = (type, msg) => {
-    setToast({ type, msg });
-    setTimeout(() => setToast(null), 4000);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
@@ -75,15 +70,15 @@ function CareerForm() {
       const data = await res.json();
 
       if (res.status === 429) {
-        showToast('error', 'Too many submissions. Please wait a few minutes.');
+        toast.error('Too many submissions. Please wait a few minutes.');
       } else if (data.success) {
-        showToast('success', 'Application submitted successfully!');
+        toast.success('Application submitted successfully!');
         setFormData({ full_name: '', email: '', phone: '', gender: '', age: '', qualification: '', additional_note: '' });
       } else {
-        showToast('error', data.message || 'Submission failed.');
+        toast.error(data.message || 'Submission failed.');
       }
     } catch {
-      showToast('error', 'Network error. Please try again later.');
+      toast.error('Network error. Please try again later.');
     }
     setSubmitting(false);
   };
@@ -95,12 +90,6 @@ function CareerForm() {
 
   return (
     <>
-      {toast && (
-        <div className="toast-container">
-          <div className={`toast ${toast.type}`}>{toast.msg}</div>
-        </div>
-      )}
-
       <div className="sse-form-container">
         {/* Header */}
         <div className="sse-form-header">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import PageBanner from '../components/PageBanner';
 import useSEO from '../hooks/useSEO';
 
@@ -25,7 +26,6 @@ function Campus() {
   });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [toast, setToast] = useState(null);
 
   const qualificationOptions = [
     'Below 10th', '10th & 12th', 'BCom', 'MCom', 'BA', 'MA', 'BCA',
@@ -78,11 +78,6 @@ function Campus() {
     }));
   };
 
-  const showToast = (type, msg) => {
-    setToast({ type, msg });
-    setTimeout(() => setToast(null), 4000);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
@@ -104,9 +99,9 @@ function Campus() {
       const data = await res.json();
 
       if (res.status === 429) {
-        showToast('error', 'Too many submissions. Please wait a few minutes.');
+        toast.error('Too many submissions. Please wait a few minutes.');
       } else if (data.success) {
-        showToast('success', 'Enquiry submitted successfully!');
+        toast.success('Enquiry submitted successfully!');
         setFormData({
           representative_name: '', designation: '', email: '', phone: '',
           college_name: '', students_batch: '', recruitment_location: '',
@@ -114,10 +109,10 @@ function Campus() {
           college_address: '', qualifications: [], additional_notes: '',
         });
       } else {
-        showToast('error', data.message || 'Submission failed.');
+        toast.error(data.message || 'Submission failed.');
       }
     } catch {
-      showToast('error', 'Network error. Please try again later.');
+      toast.error('Network error. Please try again later.');
     }
     setSubmitting(false);
   };
@@ -125,12 +120,6 @@ function Campus() {
   return (
     <>
       <PageBanner title="College Campus Recruitment" breadcrumbs={[{ label: 'College Campus Recruitment' }]} />
-
-      {toast && (
-        <div className="toast-container">
-          <div className={`toast ${toast.type}`}>{toast.msg}</div>
-        </div>
-      )}
 
       <br /><br />
 
