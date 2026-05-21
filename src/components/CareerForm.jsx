@@ -65,7 +65,7 @@ function CareerForm() {
       const data = res.data;
 
       if (data.success) {
-        toast.success('Application submitted successfully!');
+        toast.success('Your application has been submitted successfully!');
         setFormData({ full_name: '', email: '', phone: '', gender: '', age: '', qualification: '', additional_note: '' });
       } else {
         toast.error(data.message || 'Submission failed.');

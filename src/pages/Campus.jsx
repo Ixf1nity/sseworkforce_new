@@ -94,7 +94,7 @@ function Campus() {
       const data = res.data;
 
       if (data.success) {
-        toast.success('Enquiry submitted successfully!');
+        toast.success('Your college campus recruitment enquiry has been submitted successfully!');
         setFormData({
           representative_name: '', designation: '', email: '', phone: '',
           college_name: '', students_batch: '', recruitment_location: '',

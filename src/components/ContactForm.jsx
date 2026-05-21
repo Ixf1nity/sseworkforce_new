@@ -59,7 +59,7 @@ function ContactForm() {
       const data = res.data;
 
       if (data.success) {
-        toast.success('Message sent successfully!');
+        toast.success('Your enquiry has been sent successfully!');
         setFormData({ full_name: '', phone: '', email: '', subject: '', message: '' });
       } else {
         toast.error(data.message || 'Failed to send message.');
