@@ -2,6 +2,11 @@ import 'dotenv/config';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
+import dns from 'dns';
+
+// Force Node.js to use IPv4 instead of IPv6 for DNS resolution
+// This fixes the 'ENETUNREACH' error when connecting to SMTP servers
+dns.setDefaultResultOrder('ipv4first');
 import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
