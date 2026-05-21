@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const API_BASE = process.env.API_BASE;
 
@@ -56,12 +57,8 @@ function ContactForm() {
 
     setSubmitting(true);
     try {
-      const res = await fetch(`http://87.76.191.18:3001/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
+      const res = await axios.post(`http://87.76.191.18:3001/api/contact`, formData);
+      const data = res.data;
 
       if (data.success) {
         toast.success('Message sent successfully!');
@@ -69,8 +66,12 @@ function ContactForm() {
       } else {
         toast.error(data.message || 'Failed to send message.');
       }
-    } catch {
-      toast.error('Network error. Please try again later.');
+    } catch (err) {
+      if (err.response && err.response.status === 429) {
+        toast.error('Too many submissions. Please wait a few minutes.');
+      } else {
+        toast.error(err.response?.data?.message || 'Network error. Please try again later.');
+      }
     }
     setSubmitting(false);
   };

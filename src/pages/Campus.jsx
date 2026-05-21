@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 import PageBanner from '../components/PageBanner';
 import useSEO from '../hooks/useSEO';
 
@@ -88,19 +89,13 @@ function Campus() {
 
     setSubmitting(true);
     try {
-      const res = await fetch(`http://87.76.191.18:3001/api/campus`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          qualifications: formData.qualifications.join(', '),
-        }),
+      const res = await axios.post(`http://87.76.191.18:3001/api/campus`, {
+        ...formData,
+        qualifications: formData.qualifications.join(', '),
       });
-      const data = await res.json();
+      const data = res.data;
 
-      if (res.status === 429) {
-        toast.error('Too many submissions. Please wait a few minutes.');
-      } else if (data.success) {
+      if (data.success) {
         toast.success('Enquiry submitted successfully!');
         setFormData({
           representative_name: '', designation: '', email: '', phone: '',
@@ -111,8 +106,12 @@ function Campus() {
       } else {
         toast.error(data.message || 'Submission failed.');
       }
-    } catch {
-      toast.error('Network error. Please try again later.');
+    } catch (err) {
+      if (err.response && err.response.status === 429) {
+        toast.error('Too many submissions. Please wait a few minutes.');
+      } else {
+        toast.error(err.response?.data?.message || 'Network error. Please try again later.');
+      }
     }
     setSubmitting(false);
   };
