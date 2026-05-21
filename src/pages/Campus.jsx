@@ -4,8 +4,6 @@ import axios from 'axios';
 import PageBanner from '../components/PageBanner';
 import useSEO from '../hooks/useSEO';
 
-const API_BASE = process.env.API_BASE;
-
 function Campus() {
   useSEO({
     title: 'Campus Recruitment & Placement | Institutional Partnerships',
@@ -89,7 +87,7 @@ function Campus() {
 
     setSubmitting(true);
     try {
-      const res = await axios.post(`http://87.76.191.18:3001/api/campus`, {
+      const res = await axios.post(`/api/campus`, {
         ...formData,
         qualifications: formData.qualifications.join(', '),
       });

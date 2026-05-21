@@ -12,7 +12,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import mailRoutes from './routes/mail.js';
-import { generateCsrfToken } from './middleware/csrf.js';
 
 const app = express();
 app.set('trust proxy', 1);
@@ -29,11 +28,16 @@ app.use(compression());
 // Helmet — HTTP security headers (CSP, HSTS, X-Frame-Options, etc.)
 app.use(helmet());
 
-// CORS — allow all origins by reflecting the request origin
+// CORS — Restrict to allowed origins to prevent distributed CSRF spam
 app.use(cors({
-  origin: true,
+  origin: [
+    'http://87.76.191.18',
+    'http://87.76.191.18:80',
+    'http://localhost:5173',
+    process.env.CORS_ORIGIN
+  ].filter(Boolean),
   methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
+  allowedHeaders: ['Content-Type'],
 }));
 
 // Body parser with size limit (prevent payload attacks)
@@ -66,13 +70,6 @@ app.use('/api', generalLimiter);
 app.use('/api/contact', mailLimiter);
 app.use('/api/career', mailLimiter);
 app.use('/api/campus', mailLimiter);
-
-// ============================================
-// CSRF Token Endpoint
-// ============================================
-app.get('/api/csrf-token', generateCsrfToken, (req, res) => {
-  res.json({ csrfToken: res.locals.csrfToken });
-});
 
 // ============================================
 // Routes

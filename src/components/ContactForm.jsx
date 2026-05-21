@@ -2,8 +2,6 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
-const API_BASE = process.env.API_BASE;
-
 function ContactForm() {
   const [formData, setFormData] = useState({
     full_name: '',
@@ -57,7 +55,7 @@ function ContactForm() {
 
     setSubmitting(true);
     try {
-      const res = await axios.post(`http://87.76.191.18:3001/api/contact`, formData);
+      const res = await axios.post(`/api/contact`, formData);
       const data = res.data;
 
       if (data.success) {
