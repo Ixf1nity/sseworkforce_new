@@ -4065,3 +4065,518 @@ section {
   }
 }
 
+/* ==========================================================================
+   ---- HP NAVIGATION & HEADER STYLE ----
+   ========================================================================== */
+.hp-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--hp-canvas);
+  border-bottom: 1px solid var(--hp-hairline);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-header.is-sticky {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  border-bottom-color: rgba(26, 26, 26, 0.05);
+}
+
+.hp-nav-container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-header.is-sticky .hp-nav-container {
+  height: 70px;
+}
+
+.hp-nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.hp-nav-logo img {
+  height: 44px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-nav-logo:hover img {
+  transform: scale(1.02);
+}
+
+.hp-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 100%;
+}
+
+.hp-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100%;
+}
+
+.hp-nav-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* HP Typographic Link with growing bottom line */
+.hp-nav-link {
+  font-family: var(--hp-font);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hp-charcoal);
+  text-decoration: none;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.25s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.hp-nav-link i {
+  font-size: 10px;
+  margin-top: 1px;
+  transition: transform 0.25s ease;
+}
+
+.hp-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background-color: var(--hp-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-nav-link:hover {
+  color: var(--hp-primary);
+}
+
+.hp-nav-link:hover::after,
+.hp-nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hp-nav-link.active {
+  color: var(--hp-primary);
+  font-weight: 700;
+}
+
+/* Pristine Flat Dropdown Menu */
+.hp-nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% - 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--hp-canvas);
+  border: 1px solid var(--hp-hairline);
+  box-shadow: var(--hp-shadow-float);
+  border-radius: 4px;
+  width: 280px;
+  padding: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1010;
+  margin: 0;
+  list-style: none;
+}
+
+.hp-nav-item:hover .hp-nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hp-nav-item:hover > .hp-nav-link i {
+  transform: rotate(180deg);
+}
+
+.hp-nav-dropdown-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hp-nav-dropdown-link {
+  font-family: var(--hp-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hp-charcoal);
+  text-decoration: none;
+  padding: 10px 16px;
+  display: block;
+  border-radius: 4px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-nav-dropdown-link:hover {
+  color: var(--hp-primary);
+  background: var(--hp-cloud);
+  padding-left: 20px;
+}
+
+.hp-nav-dropdown-link.active {
+  color: var(--hp-primary);
+  background: var(--hp-cloud);
+  font-weight: 600;
+}
+
+/* HP Actions and Premium Utility Buttons */
+.hp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.hp-nav-utility-btn {
+  border: none;
+  background: transparent;
+  color: var(--hp-charcoal);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.hp-nav-utility-btn:hover {
+  color: var(--hp-primary);
+  background: var(--hp-cloud);
+}
+
+/* HP Style Solid flat CTA Button */
+.hp-nav-cta {
+  font-family: var(--hp-font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hp-on-ink) !important;
+  background: var(--hp-primary);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.hp-nav-cta:hover {
+  background: var(--hp-ink);
+  color: var(--hp-on-ink) !important;
+}
+
+/* Mobile Toggle Hamburger */
+.hp-nav-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 16px;
+  cursor: pointer;
+  z-index: 1005;
+  padding: 0;
+}
+
+.hp-nav-toggle span {
+  width: 100%;
+  height: 2px;
+  background: var(--hp-ink);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile Side Panel Navigation */
+.hp-mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 26, 26, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.hp-mobile-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hp-mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  background: var(--hp-canvas);
+  box-shadow: var(--hp-shadow-float);
+  z-index: 9999;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.hp-mobile-sidebar.is-open {
+  transform: translateX(0);
+}
+
+.hp-mobile-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--hp-hairline);
+}
+
+.hp-mobile-logo img {
+  height: 38px;
+  width: auto;
+}
+
+.hp-mobile-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--hp-charcoal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.hp-mobile-close:hover {
+  background: var(--hp-cloud);
+  color: var(--hp-ink);
+}
+
+.hp-mobile-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.hp-mobile-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+}
+
+.hp-mobile-item {
+  border-bottom: 1px solid var(--hp-hairline);
+  list-style: none;
+}
+
+.hp-mobile-item:last-child {
+  border-bottom: none;
+}
+
+.hp-mobile-link, 
+.hp-mobile-dropdown-btn {
+  font-family: var(--hp-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hp-charcoal);
+  text-decoration: none;
+  padding: 16px 4px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.hp-mobile-link:hover,
+.hp-mobile-dropdown-btn:hover {
+  color: var(--hp-primary);
+  padding-left: 8px;
+}
+
+.hp-mobile-link.active {
+  color: var(--hp-primary);
+  font-weight: 700;
+}
+
+.hp-mobile-dropdown-btn i {
+  font-size: 14px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hp-mobile-dropdown-btn.is-active i {
+  transform: rotate(180deg);
+}
+
+/* Beautiful Accordion Dropdown Submenu Transition */
+.hp-mobile-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, padding 0.35s ease;
+}
+
+.hp-mobile-submenu.is-open {
+  max-height: 300px;
+  opacity: 1;
+  visibility: visible;
+  padding: 4px 0 12px 16px;
+}
+
+.hp-mobile-sublink {
+  font-family: var(--hp-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hp-graphite);
+  text-decoration: none;
+  padding: 10px 4px;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.hp-mobile-sublink:hover {
+  color: var(--hp-primary);
+  padding-left: 8px;
+}
+
+.hp-mobile-sublink.active {
+  color: var(--hp-primary);
+  font-weight: 600;
+}
+
+.hp-mobile-footer {
+  padding-top: 16px;
+}
+
+.hp-mobile-cta {
+  font-family: var(--hp-font);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hp-on-ink) !important;
+  background: var(--hp-primary);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.hp-mobile-cta:hover {
+  background: var(--hp-ink);
+}
+
+.hp-mobile-call-card {
+  background: var(--hp-cloud);
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid var(--hp-hairline);
+}
+
+.hp-mobile-call-card span {
+  font-family: var(--hp-font);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--hp-graphite);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.hp-mobile-call-card a {
+  font-family: var(--hp-font);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--hp-ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hp-mobile-call-card a:hover {
+  color: var(--hp-primary);
+}
+
+/* Push main app down so sticky fixed navbar doesn't cover top page boundaries */
+body {
+  padding-top: 80px;
+}
+
+@media (max-width: 1199px) {
+  .hp-nav-menu {
+    display: none;
+  }
+  .hp-nav-toggle {
+    display: flex;
+  }
+  .hp-nav-container {
+    height: 70px;
+  }
+  body {
+    padding-top: 70px;
+  }
+}
+
+

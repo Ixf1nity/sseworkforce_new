@@ -6,114 +6,178 @@ function MobileMenu({ isOpen, onClose }) {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
-  if (!isOpen) return null;
-
   return (
     <>
-      {/* Overlay */}
+      {/* Blurred Overlay backdrop */}
       <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(0,0,0,0.5)',
-          zIndex: 9998,
-        }}
+        className={`hp-mobile-overlay ${isOpen ? 'is-open' : ''}`}
         onClick={onClose}
       />
 
-      {/* Sidebar */}
-      <div
-        className="mobile-sidebar"
-        style={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 9999,
-          overflowY: 'auto',
-          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'transform 0.3s ease',
-        }}
-      >
+      {/* Slide-in Mobile Sidebar */}
+      <div className={`hp-mobile-sidebar ${isOpen ? 'is-open' : ''}`}>
         {/* Header */}
-        <div className="offcanvas-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 20px', borderBottom: '1px solid #f1f1f1' }}>
-          <Link to="/" onClick={onClose}>
-            <img src="/images/Logo.webp" loading="lazy" alt="logo" className="mobile-logo" />
+        <div className="hp-mobile-header">
+          <Link to="/" className="hp-mobile-logo" onClick={onClose}>
+            <img src="/images/Logo.webp" loading="lazy" alt="SSE Workforce Logo" />
           </Link>
           <button
             type="button"
+            className="hp-mobile-close"
             onClick={onClose}
-            style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer' }}
             aria-label="Close menu"
           >
             ✕
           </button>
         </div>
 
-        {/* Body */}
-        <div style={{ padding: '0 20px' }}>
-          <ul className="mobile-menu">
-            <li>
-              <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={onClose}>
+        {/* Navigation Body */}
+        <div className="hp-mobile-body">
+          <ul className="hp-mobile-menu">
+            {/* Home */}
+            <li className="hp-mobile-item">
+              <Link
+                to="/"
+                className={`hp-mobile-link ${location.pathname === '/' ? 'active' : ''}`}
+                onClick={onClose}
+              >
                 Home
               </Link>
             </li>
 
             {/* About Dropdown */}
-            <li className="mobile-dropdown">
-              <button className="mobile-dropdown-btn" onClick={() => setAboutOpen(!aboutOpen)}>
+            <li className="hp-mobile-item">
+              <button
+                className={`hp-mobile-dropdown-btn ${aboutOpen ? 'is-active' : ''}`}
+                onClick={() => setAboutOpen(!aboutOpen)}
+              >
                 About Us
-                <span>{aboutOpen ? '−' : '+'}</span>
+                <i className="fa-solid fa-chevron-down" />
               </button>
-              {aboutOpen && (
-                <ul className="mobile-submenu" style={{ listStyle: 'none', paddingLeft: '15px', background: '#f8fafc' }}>
-                  <li><Link to="/about" onClick={onClose}>Company Profile</Link></li>
-                  <li><Link to="/leadership" onClick={onClose}>Leadership Team</Link></li>
-                  <li><Link to="/financials" onClick={onClose}>Financials</Link></li>
-                </ul>
-              )}
+              <ul className={`hp-mobile-submenu ${aboutOpen ? 'is-open' : ''}`}>
+                <li>
+                  <Link
+                    to="/about"
+                    className={`hp-mobile-sublink ${location.pathname === '/about' ? 'active' : ''}`}
+                    onClick={onClose}
+                  >
+                    Company Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/leadership"
+                    className={`hp-mobile-sublink ${location.pathname === '/leadership' ? 'active' : ''}`}
+                    onClick={onClose}
+                  >
+                    Leadership Team
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/financials"
+                    className={`hp-mobile-sublink ${location.pathname === '/financials' ? 'active' : ''}`}
+                    onClick={onClose}
+                  >
+                    Financials
+                  </Link>
+                </li>
+              </ul>
             </li>
 
             {/* Services Dropdown */}
-            <li className="mobile-dropdown">
-              <button className="mobile-dropdown-btn" onClick={() => setServicesOpen(!servicesOpen)}>
+            <li className="hp-mobile-item">
+              <button
+                className={`hp-mobile-dropdown-btn ${servicesOpen ? 'is-active' : ''}`}
+                onClick={() => setServicesOpen(!servicesOpen)}
+              >
                 Services
-                <span>{servicesOpen ? '−' : '+'}</span>
+                <i className="fa-solid fa-chevron-down" />
               </button>
-              {servicesOpen && (
-                <ul className="mobile-submenu" style={{ listStyle: 'none', paddingLeft: '15px', background: '#f8fafc' }}>
-                  <li><Link to="/services#manpower" onClick={onClose}>Technical Manpower Outsourcing</Link></li>
-                  <li><Link to="/services#fabrication" onClick={onClose}>Precision Job Work &amp; Fabrication</Link></li>
-                  <li><Link to="/services#TalentAcquisition" onClick={onClose}>Strategic Talent Acquisition</Link></li>
-                </ul>
-              )}
+              <ul className={`hp-mobile-submenu ${servicesOpen ? 'is-open' : ''}`}>
+                <li>
+                  <Link
+                    to="/services#manpower"
+                    className={`hp-mobile-sublink ${location.pathname === '/services' && location.hash === '#manpower' ? 'active' : ''}`}
+                    onClick={onClose}
+                  >
+                    Technical Manpower Outsourcing
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/services#fabrication"
+                    className={`hp-mobile-sublink ${location.pathname === '/services' && location.hash === '#fabrication' ? 'active' : ''}`}
+                    onClick={onClose}
+                  >
+                    Precision Job Work &amp; Fabrication
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/services#TalentAcquisition"
+                    className={`hp-mobile-sublink ${location.pathname === '/services' && location.hash === '#TalentAcquisition' ? 'active' : ''}`}
+                    onClick={onClose}
+                  >
+                    Strategic Talent Acquisition
+                  </Link>
+                </li>
+              </ul>
             </li>
 
-            <li>
-              <Link to="/gallery" onClick={onClose}>Gallery</Link>
+            {/* Gallery */}
+            <li className="hp-mobile-item">
+              <Link
+                to="/gallery"
+                className={`hp-mobile-link ${location.pathname === '/gallery' ? 'active' : ''}`}
+                onClick={onClose}
+              >
+                Gallery
+              </Link>
             </li>
-            <li>
-              <Link to="/clients" onClick={onClose}>Clients</Link>
+
+            {/* Clients */}
+            <li className="hp-mobile-item">
+              <Link
+                to="/clients"
+                className={`hp-mobile-link ${location.pathname === '/clients' ? 'active' : ''}`}
+                onClick={onClose}
+              >
+                Clients
+              </Link>
             </li>
-            <li>
-              <Link to="/career" onClick={onClose}>Career</Link>
+
+            {/* Career */}
+            <li className="hp-mobile-item">
+              <Link
+                to="/career"
+                className={`hp-mobile-link ${location.pathname === '/career' ? 'active' : ''}`}
+                onClick={onClose}
+              >
+                Career
+              </Link>
             </li>
-            <li>
-              <Link to="/campus" onClick={onClose}>College Campus Recruitment</Link>
+
+            {/* Campus */}
+            <li className="hp-mobile-item">
+              <Link
+                to="/campus"
+                className={`hp-mobile-link ${location.pathname === '/campus' ? 'active' : ''}`}
+                onClick={onClose}
+              >
+                Campus
+              </Link>
             </li>
           </ul>
 
-          {/* Contact Area */}
-          <div className="mobile-contact-area">
-            <Link to="/contact" className="mobile-enquiry-btn" onClick={onClose}>
+          {/* Footer Area */}
+          <div className="hp-mobile-footer">
+            <Link to="/contact" className="hp-mobile-cta" onClick={onClose}>
               Enquire Now
             </Link>
-            <div className="mobile-call-area">
+            <div className="hp-mobile-call-card">
               <span>Call Us Now</span>
-              <a href="tel:+917498914626">+917498914626</a>
+              <a href="tel:+917498914626">+91 7498914626</a>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -23,111 +23,129 @@ function Navbar() {
 
   return (
     <>
-      <nav className={`navbar navbar-expand-xl bg-F8FAFC ${scrolled ? 'is-sticky' : ''}`} id="navbar">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            <img src="/images/Logo.webp" loading="lazy" alt="SSE Workforce Logo" style={{ width: '170px' }} />
+      <header className={`hp-header ${scrolled ? 'is-sticky' : ''}`} id="navbar">
+        <div className="hp-nav-container">
+          {/* Logo */}
+          <Link className="hp-nav-logo" to="/">
+            <img src="/images/Logo.webp" loading="lazy" alt="SSE Workforce Logo" />
           </Link>
 
-          {/* Mobile Toggle */}
-          <button
-            className="mobile-toggle-btn"
-            type="button"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-
-          <div className="collapse navbar-collapse">
-            <ul className="navbar-nav">
-              <li className="nav-item">
+          {/* Desktop Navigation Menu */}
+          <nav className="hp-nav-menu">
+            <ul className="hp-nav-list">
+              <li className="hp-nav-item">
                 <NavLink
                   to="/"
-                  className={({ isActive }) => `dropdown-toggle nav-link ${isActive ? 'active' : ''}`}
+                  className={({ isActive }) => `hp-nav-link ${isActive ? 'active' : ''}`}
                   end
                 >
                   Home
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <a
-                  href="#"
-                  className={`dropdown-toggle nav-link ${isAboutActive ? 'active' : ''}`}
-                  onClick={(e) => e.preventDefault()}
-                >
-                  About Us <i className="ri-arrow-down-s-line"></i>
-                </a>
-                <ul className="dropdown-menu" style={{ width: '200px' }}>
-                  <li className="nav-item">
-                    <Link to="/about" className="nav-link">Company Profile</Link>
+              {/* About Us Dropdown */}
+              <li className="hp-nav-item">
+                <Link to="/about" className={`hp-nav-link ${isAboutActive ? 'active' : ''}`}>
+                  About Us <i className="fa-solid fa-chevron-down" />
+                </Link>
+                <ul className="hp-nav-dropdown-menu">
+                  <li className="hp-nav-dropdown-item">
+                    <NavLink to="/about" className={({ isActive }) => `hp-nav-dropdown-link ${isActive ? 'active' : ''}`}>
+                      Company Profile
+                    </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <Link to="/leadership" className="nav-link">Leadership Team</Link>
+                  <li className="hp-nav-dropdown-item">
+                    <NavLink to="/leadership" className={({ isActive }) => `hp-nav-dropdown-link ${isActive ? 'active' : ''}`}>
+                      Leadership Team
+                    </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <Link to="/financials" className="nav-link">Financials</Link>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  href="#"
-                  className={`dropdown-toggle nav-link ${isServicesActive ? 'active' : ''}`}
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Services <i className="ri-arrow-down-s-line"></i>
-                </a>
-                <ul className="dropdown-menu">
-                  <li className="nav-item">
-                    <Link to="/services#manpower" className="nav-link">Technical Manpower Outsourcing</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/services#fabrication" className="nav-link">Precision Job Work &amp; Fabrication</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/services#TalentAcquisition" className="nav-link">Strategic Talent Acquisition</Link>
+                  <li className="hp-nav-dropdown-item">
+                    <NavLink to="/financials" className={({ isActive }) => `hp-nav-dropdown-link ${isActive ? 'active' : ''}`}>
+                      Financials
+                    </NavLink>
                   </li>
                 </ul>
               </li>
 
-              <li className="nav-item">
-                <NavLink to="/gallery" className={({ isActive }) => `dropdown-toggle nav-link ${isActive ? 'active' : ''}`}>
+              {/* Services Dropdown */}
+              <li className="hp-nav-item">
+                <Link to="/services" className={`hp-nav-link ${isServicesActive ? 'active' : ''}`}>
+                  Services <i className="fa-solid fa-chevron-down" />
+                </Link>
+                <ul className="hp-nav-dropdown-menu">
+                  <li className="hp-nav-dropdown-item">
+                    <NavLink
+                      to="/services#manpower"
+                      className={({ isActive }) => `hp-nav-dropdown-link ${isActive && location.hash === '#manpower' ? 'active' : ''}`}
+                    >
+                      Technical Manpower Outsourcing
+                    </NavLink>
+                  </li>
+                  <li className="hp-nav-dropdown-item">
+                    <NavLink
+                      to="/services#fabrication"
+                      className={({ isActive }) => `hp-nav-dropdown-link ${isActive && location.hash === '#fabrication' ? 'active' : ''}`}
+                    >
+                      Precision Job Work &amp; Fabrication
+                    </NavLink>
+                  </li>
+                  <li className="hp-nav-dropdown-item">
+                    <NavLink
+                      to="/services#TalentAcquisition"
+                      className={({ isActive }) => `hp-nav-dropdown-link ${isActive && location.hash === '#TalentAcquisition' ? 'active' : ''}`}
+                    >
+                      Strategic Talent Acquisition
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+
+              <li className="hp-nav-item">
+                <NavLink to="/gallery" className={({ isActive }) => `hp-nav-link ${isActive ? 'active' : ''}`}>
                   Gallery
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <NavLink to="/clients" className={({ isActive }) => `dropdown-toggle nav-link ${isActive ? 'active' : ''}`}>
+              <li className="hp-nav-item">
+                <NavLink to="/clients" className={({ isActive }) => `hp-nav-link ${isActive ? 'active' : ''}`}>
                   Clients
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <NavLink to="/career" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              <li className="hp-nav-item">
+                <NavLink to="/career" className={({ isActive }) => `hp-nav-link ${isActive ? 'active' : ''}`}>
                   Career
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <NavLink to="/campus" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                  College Campus Recruitment
+              <li className="hp-nav-item">
+                <NavLink to="/campus" className={({ isActive }) => `hp-nav-link ${isActive ? 'active' : ''}`}>
+                  Campus Recruitment
                 </NavLink>
               </li>
             </ul>
 
-            <div className="others-option d-flex align-items-center">
-              <div className="option-item">
-                <Link to="/contact" className="default-btn1 enquiry-btn-custom">Enquire Now</Link>
-              </div>
+            {/* Desktop CTA */}
+            <div className="hp-nav-actions">
+              <Link to="/contact" className="hp-nav-cta">
+                Enquire Now
+              </Link>
             </div>
-          </div>
+          </nav>
+
+          {/* Mobile Menu Hamburger Trigger */}
+          <button
+            className="hp-nav-toggle"
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
-      </nav>
+      </header>
 
       <MobileMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
