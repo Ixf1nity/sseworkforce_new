@@ -66,6 +66,15 @@ const mailLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+// Rate limit for brochure downloads to prevent abuse
+const brochureLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // 10 downloads per 15 min per IP
+  message: { success: false, message: 'Too many download attempts. Please try again after 15 minutes.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 app.use('/api', generalLimiter);
 app.use('/api/contact', mailLimiter);
 app.use('/api/career', mailLimiter);
@@ -75,6 +84,19 @@ app.use('/api/campus', mailLimiter);
 // Routes
 // ============================================
 app.use('/api', mailRoutes);
+
+// Download brochure route with rate limiter
+app.get('/api/download-brochure', brochureLimiter, (req, res) => {
+  const brochurePath = path.join(__dirname, '../public/SSE-Workforce-Brochure.pdf');
+  res.download(brochurePath, 'SSE-Workforce-Brochure.pdf', (err) => {
+    if (err) {
+      console.error('Failed to download brochure:', err.message);
+      if (!res.headersSent) {
+        res.status(500).json({ success: false, message: 'Could not download brochure at this time.' });
+      }
+    }
+  });
+});
 
 // Health check
 app.get('/api/health', (req, res) => {

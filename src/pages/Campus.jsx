@@ -115,201 +115,212 @@ function Campus() {
   };
 
   return (
-    <>
+    <div className="hp-home">
       <PageBanner title="College Campus Recruitment" breadcrumbs={[{ label: 'College Campus Recruitment' }]} />
 
-      <br /><br />
+      <section className="hp-form-section">
+        <div className="hp-container">
+          <div className="hp-section-header" style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <p className="hp-section-eyebrow">Institutional Partnerships</p>
+            <h2 className="hp-section-title">College Recruitment Drives</h2>
+            <p className="hp-section-subtitle">
+              Partner with SSE Workforce Services to connect your graduating batches (ITI, Diploma, BTech) with leading manufacturing and engineering employers in Maharashtra.
+            </p>
+          </div>
 
-      <div className="sse-form-container">
-        {/* Header */}
-        <div className="sse-form-header">
-          <h2>College Recruitment Enquiry Form</h2>
-          <p>Fill all details carefully for recruitment process</p>
-        </div>
+          <div className="hp-form-card">
+            {/* Header */}
+            <div className="hp-form-header">
+              <h2>College Recruitment Enquiry Form</h2>
+              <p>Fill all details carefully for recruitment process</p>
+            </div>
 
-        {/* Form Body */}
-        <div className="sse-form-body">
-          <form onSubmit={handleSubmit} noValidate>
-            <div className="sse-form-grid">
+            {/* Form Body */}
+            <div className="hp-form-body">
+              <form onSubmit={handleSubmit} noValidate>
+                <div className="hp-form-grid">
 
-              {/* Representative Name */}
-              <div className="sse-form-group">
-                <label>College Authorised Representative Name</label>
-                <input
-                  type="text"
-                  name="representative_name"
-                  placeholder="Enter Name"
-                  value={formData.representative_name}
-                  onChange={handleChange}
-                  className={errors.representative_name ? 'input-error' : ''}
-                  required
-                />
-                {errors.representative_name && <span className="field-error">{errors.representative_name}</span>}
-              </div>
-
-              {/* Designation */}
-              <div className="sse-form-group">
-                <label>Designation</label>
-                <input
-                  type="text"
-                  name="designation"
-                  placeholder="Enter Designation"
-                  value={formData.designation}
-                  onChange={handleChange}
-                  className={errors.designation ? 'input-error' : ''}
-                  required
-                />
-                {errors.designation && <span className="field-error">{errors.designation}</span>}
-              </div>
-
-              {/* Email */}
-              <div className="sse-form-group">
-                <label>Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={errors.email ? 'input-error' : ''}
-                  required
-                />
-                {errors.email && <span className="field-error">{errors.email}</span>}
-              </div>
-
-              {/* Phone */}
-              <div className="sse-form-group">
-                <label>Phone Number</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Enter 10 Digit Number"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  maxLength="10"
-                  className={errors.phone ? 'input-error' : ''}
-                  required
-                />
-                {errors.phone && <span className="field-error">{errors.phone}</span>}
-              </div>
-
-              {/* College Name */}
-              <div className="sse-form-group">
-                <label>College Name</label>
-                <input
-                  type="text"
-                  name="college_name"
-                  placeholder="Enter College Name"
-                  value={formData.college_name}
-                  onChange={handleChange}
-                  className={errors.college_name ? 'input-error' : ''}
-                  required
-                />
-                {errors.college_name && <span className="field-error">{errors.college_name}</span>}
-              </div>
-
-              {/* Students Batch */}
-              <div className="sse-form-group">
-                <label>Number of Students in Batch</label>
-                <input
-                  type="text"
-                  name="students_batch"
-                  placeholder="Enter Number"
-                  value={formData.students_batch}
-                  onChange={handleChange}
-                  className={errors.students_batch ? 'input-error' : ''}
-                  required
-                />
-                {errors.students_batch && <span className="field-error">{errors.students_batch}</span>}
-              </div>
-
-              {/* Recruitment Location */}
-              <div className="sse-form-group">
-                <label>Preferred Recruitment Location</label>
-                <input
-                  type="text"
-                  name="recruitment_location"
-                  placeholder="Enter Location"
-                  value={formData.recruitment_location}
-                  onChange={handleChange}
-                  className={errors.recruitment_location ? 'input-error' : ''}
-                  required
-                />
-                {errors.recruitment_location && <span className="field-error">{errors.recruitment_location}</span>}
-              </div>
-
-              {/* Availability Month */}
-              <div className="sse-form-group">
-                <label>Availability Month of Batch</label>
-                <input
-                  type="month"
-                  name="availability_month"
-                  value={formData.availability_month}
-                  onChange={handleChange}
-                  className={errors.availability_month ? 'input-error' : ''}
-                  required
-                />
-                {errors.availability_month && <span className="field-error">{errors.availability_month}</span>}
-              </div>
-
-              {/* College Address — Full Width */}
-              <div className="sse-form-group sse-full-width">
-                <label>College Address</label>
-                <textarea
-                  name="college_address"
-                  placeholder="Enter Complete College Address"
-                  value={formData.college_address}
-                  onChange={handleChange}
-                  className={errors.college_address ? 'input-error' : ''}
-                  required
-                />
-                {errors.college_address && <span className="field-error">{errors.college_address}</span>}
-              </div>
-
-              {/* Qualification Checkboxes — Full Width */}
-              <div className="sse-form-group sse-full-width">
-                <label>Student Qualification</label>
-                <div className="qualification-box">
-                  <div className="checkbox-grid">
-                    {qualificationOptions.map((qual) => (
-                      <label key={qual} className="checkbox-label">
-                        <input
-                          type="checkbox"
-                          checked={formData.qualifications.includes(qual)}
-                          onChange={() => handleCheckbox(qual)}
-                        />
-                        {qual}
-                      </label>
-                    ))}
+                  {/* Representative Name */}
+                  <div className="hp-form-group">
+                    <label>Representative Name</label>
+                    <input
+                      type="text"
+                      name="representative_name"
+                      placeholder="Enter Representative Name"
+                      value={formData.representative_name}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.representative_name ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.representative_name && <span className="hp-form-error">{errors.representative_name}</span>}
                   </div>
+
+                  {/* Designation */}
+                  <div className="hp-form-group">
+                    <label>Designation</label>
+                    <input
+                      type="text"
+                      name="designation"
+                      placeholder="Enter Designation"
+                      value={formData.designation}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.designation ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.designation && <span className="hp-form-error">{errors.designation}</span>}
+                  </div>
+
+                  {/* Email */}
+                  <div className="hp-form-group">
+                    <label>Email Address</label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter Email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.email ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.email && <span className="hp-form-error">{errors.email}</span>}
+                  </div>
+
+                  {/* Phone */}
+                  <div className="hp-form-group">
+                    <label>Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter 10 Digit Number"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      maxLength="10"
+                      className={`hp-form-control ${errors.phone ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.phone && <span className="hp-form-error">{errors.phone}</span>}
+                  </div>
+
+                  {/* College Name */}
+                  <div className="hp-form-group hp-form-full-width">
+                    <label>College Name</label>
+                    <input
+                      type="text"
+                      name="college_name"
+                      placeholder="Enter College Name"
+                      value={formData.college_name}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.college_name ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.college_name && <span className="hp-form-error">{errors.college_name}</span>}
+                  </div>
+
+                  {/* Students Batch */}
+                  <div className="hp-form-group">
+                    <label>Number of Students in Batch</label>
+                    <input
+                      type="text"
+                      name="students_batch"
+                      placeholder="Enter Number"
+                      value={formData.students_batch}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.students_batch ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.students_batch && <span className="hp-form-error">{errors.students_batch}</span>}
+                  </div>
+
+                  {/* Recruitment Location */}
+                  <div className="hp-form-group">
+                    <label>Preferred Recruitment Location</label>
+                    <input
+                      type="text"
+                      name="recruitment_location"
+                      placeholder="Enter Location"
+                      value={formData.recruitment_location}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.recruitment_location ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.recruitment_location && <span className="hp-form-error">{errors.recruitment_location}</span>}
+                  </div>
+
+                  {/* Availability Month */}
+                  <div className="hp-form-group hp-form-full-width">
+                    <label>Availability Month of Batch</label>
+                    <input
+                      type="month"
+                      name="availability_month"
+                      value={formData.availability_month}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.availability_month ? 'is-invalid' : ''}`}
+                      required
+                    />
+                    {errors.availability_month && <span className="hp-form-error">{errors.availability_month}</span>}
+                  </div>
+
+                  {/* College Address — Full Width */}
+                  <div className="hp-form-group hp-form-full-width">
+                    <label>College Address</label>
+                    <textarea
+                      name="college_address"
+                      placeholder="Enter Complete College Address"
+                      value={formData.college_address}
+                      onChange={handleChange}
+                      className={`hp-form-control ${errors.college_address ? 'is-invalid' : ''}`}
+                      style={{ minHeight: '100px', resize: 'none' }}
+                      required
+                    />
+                    {errors.college_address && <span className="hp-form-error">{errors.college_address}</span>}
+                  </div>
+
+                  {/* Qualification Checkboxes — Full Width */}
+                  <div className="hp-form-group hp-form-full-width">
+                    <div className="hp-form-checkbox-section">
+                      <div className="hp-form-checkbox-section-title">Student Qualification Options</div>
+                      <div className="hp-form-checkbox-grid">
+                        {qualificationOptions.map((qual) => (
+                          <label key={qual} className="hp-form-checkbox-label">
+                            <input
+                              type="checkbox"
+                              checked={formData.qualifications.includes(qual)}
+                              onChange={() => handleCheckbox(qual)}
+                            />
+                            <span>{qual}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Additional Notes — Full Width */}
+                  <div className="hp-form-group hp-form-full-width">
+                    <label>Additional Notes</label>
+                    <textarea
+                      name="additional_notes"
+                      placeholder="Write Additional Notes..."
+                      value={formData.additional_notes}
+                      onChange={handleChange}
+                      className="hp-form-control"
+                      style={{ minHeight: '120px', resize: 'none' }}
+                    />
+                  </div>
+
                 </div>
-              </div>
 
-              {/* Additional Notes — Full Width */}
-              <div className="sse-form-group sse-full-width">
-                <label>Additional Notes</label>
-                <textarea
-                  name="additional_notes"
-                  placeholder="Write Additional Notes..."
-                  value={formData.additional_notes}
-                  onChange={handleChange}
-                />
-              </div>
-
+                {/* Submit */}
+                <div className="hp-form-submit-wrap">
+                  <button type="submit" className="hp-form-btn" disabled={submitting}>
+                    {submitting ? 'Submitting...' : 'Submit Enquiry'}
+                  </button>
+                </div>
+              </form>
             </div>
-
-            {/* Submit */}
-            <div className="sse-submit-btn">
-              <button type="submit" disabled={submitting}>
-                {submitting ? 'Submitting...' : 'Submit Enquiry'}
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
-
-      <br /><br />
-    </>
+      </section>
+    </div>
   );
 }
 

@@ -34,29 +34,39 @@ function Clients() {
   ];
 
   return (
-    <>
+    <div className="hp-home">
       <PageBanner title="Our Clients" breadcrumbs={[{ label: 'Clients' }]} />
 
-      <div className="outsourcing-partner-area pb-120">
-        <div className="container">
-          <div className="clients-page-grid">
+      <section className="hp-clients-page-sec">
+        <div className="hp-container">
+          <div className="hp-section-header" style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <p className="hp-section-eyebrow">Enterprise Network</p>
+            <h2 className="hp-section-title">Trusted by Industry Leaders</h2>
+            <p className="hp-section-subtitle">
+              SSE Workforce Services Pvt Ltd is the preferred recruitment and labor outsourcing partner for automotive plants, engineering centers, and manufacturing giants in Maharashtra.
+            </p>
+          </div>
+
+          <div className="hp-clients-page-grid">
             {partners.map((p, i) => (
               <div
                 key={i}
-                className="clients-page-card"
+                className="hp-clients-page-card"
                 style={p.bg ? { backgroundColor: p.bg } : undefined}
               >
-                <img
-                  src={`/images/partner/${p.src}`}
-                  loading="lazy"
-                  alt={`Client ${i + 1}`}
-                />
+                <div className="hp-clients-page-img-wrapper">
+                  <img
+                    src={`/images/partner/${p.src}`}
+                    loading="lazy"
+                    alt={`Client Partner ${i + 1}`}
+                  />
+                </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }
 

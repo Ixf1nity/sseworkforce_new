@@ -10,15 +10,22 @@ function Career() {
   });
 
   return (
-    <>
+    <div className="hp-home">
       <PageBanner title="Career" breadcrumbs={[{ label: 'Career' }]} />
 
-      <section style={{ backgroundColor: 'whitesmoke', padding: '60px 0' }}>
-        <div className="container">
+      <section className="hp-form-section">
+        <div className="hp-container">
+          <div className="hp-section-header" style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <p className="hp-section-eyebrow">Careers at SSE</p>
+            <h2 className="hp-section-title">Join Our Professional Workforce</h2>
+            <p className="hp-section-subtitle">
+              Build a successful career with Maharashtra's leading labor contractor. Apply for technical, engineering, fabrication, and manufacturing roles.
+            </p>
+          </div>
           <CareerForm />
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

@@ -1,39 +1,27 @@
 import { Link } from 'react-router-dom';
 
-function PageBanner({ title, breadcrumbs = [], image = '/images/team.webp' }) {
+function PageBanner({ title, breadcrumbs = [] }) {
   return (
-    <div className="page-banner-area">
-      <div className="container-fluid">
-        <div className="row justify-content-center align-items-center g-4">
-          <div className="col-xl-8 col-md-12">
-            <div className="page-banner-content">
-              <div className="image">
-                <img src={image} loading="lazy" alt={title} />
-              </div>
-            </div>
-          </div>
-          <div className="col-xl-4 col-md-12">
-            <div className="page-banner-right-content">
-              <div className="page-banner-content">
-                <div className="content section-title-animation animation-style1">
-                  <h2 className="title-animation">{title}</h2>
-                  <ul className="list">
-                    <li><Link to="/">Home</Link></li>
-                    {breadcrumbs.map((crumb, i) => (
-                      <li key={i}>
-                        {crumb.link ? (
-                          <Link to={crumb.link}>{crumb.label}</Link>
-                        ) : (
-                          crumb.label
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="hp-page-header">
+      <div className="hp-container hp-page-header-inner">
+        <ul className="hp-breadcrumb">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          {breadcrumbs.map((crumb, i) => (
+            <span key={i} style={{ display: 'contents' }}>
+              <span className="hp-breadcrumb-sep">/</span>
+              <li>
+                {crumb.link ? (
+                  <Link to={crumb.link}>{crumb.label}</Link>
+                ) : (
+                  crumb.label
+                )}
+              </li>
+            </span>
+          ))}
+        </ul>
+        <h1 className="hp-page-title">{title}</h1>
       </div>
     </div>
   );

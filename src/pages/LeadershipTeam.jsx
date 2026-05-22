@@ -40,38 +40,41 @@ function LeadershipTeam() {
   ];
 
   return (
-    <>
+    <div className="hp-home">
       <PageBanner title="Leadership Team" breadcrumbs={[{ label: 'Leadership Team' }]} />
 
-      <section className="leadership-section">
-        <div className="glass-container">
-          <div className="header-box">
-            <h2>Leadership Team</h2>
-            <p>Combining 15+ years of collective expertise in industrial operations.</p>
+      <section className="hp-leadership">
+        <div className="hp-container">
+          <div className="hp-section-header" style={{ marginBottom: '48px' }}>
+            <p className="hp-section-eyebrow">Our Executive Board</p>
+            <h2 className="hp-section-title">Leadership Team</h2>
+            <p className="hp-section-subtitle">
+              Combining collective expertise in industrial operations, corporate strategy, and workforce administration.
+            </p>
           </div>
 
-          <div className="leader-grid">
+          <div className="hp-leader-grid">
             {leaders.map((leader, i) => (
-              <div key={i} className="leader-card">
-                <div className="card-left">
-                  <div className="profile-img">
+              <div key={i} className="hp-leader-card">
+                <div className="hp-leader-left">
+                  <div className="hp-leader-avatar">
                     <img src={leader.image} loading="lazy" alt={leader.name} />
                   </div>
-                  <span className="id-tag">{leader.role}</span>
-                  <h3>{leader.name}</h3>
-                  <a href={`mailto:${leader.email}`} className="mail-link">
-                    <span className="icon">✉</span> Email Me
+                  <span className="hp-leader-role">{leader.role}</span>
+                  <h3 className="hp-leader-name">{leader.name}</h3>
+                  <a href={`mailto:${leader.email}`} className="hp-leader-email">
+                    <i className="fa-solid fa-envelope" /> Email Me
                   </a>
                 </div>
-                <div className="card-right">
-                  <p className="leader-bio">{leader.bio}</p>
+                <div className="hp-leader-right">
+                  <p className="hp-leader-bio">{leader.bio}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

@@ -27,63 +27,63 @@ function Financials() {
   });
 
   return (
-    <>
+    <div className="hp-home">
       <PageBanner title="Financials" breadcrumbs={[{ label: 'Financials' }]} />
 
-      <section className="finance-section">
-        <div className="finance-inner">
-          {/* Vertical Sidebar Text */}
-          <div className="finance-sidebar">
-            <h2 className="vertical-text">FINANCIAL GROWTH</h2>
-          </div>
-
-          <div className="finance-content">
-
-
-            {/* Controls */}
-            <div className="finance-controls">
-              <div className="finance-controls-copy">
-                <span className="finance-controls-label">
-                  Showing complete fiscal data history
-                </span>
-                <p className="finance-controls-note">
-                  Starts with the latest audited performance, then moves through earlier years.
-                </p>
-              </div>
-            </div>
-
-            {/* Grid Table */}
-            <div className="finance-grid">
-              <div className="grid-header">
-                <div>Fiscal Year</div>
-                <div>Revenue</div>
-                <div>YoY Growth</div>
-                <div>Verification</div>
-              </div>
-
-              {financialData.map((item, i) => (
-                <div className="grid-row" key={i}>
-                  <div className="year-col">{item.year}</div>
-                  <div className="revenue-col">{item.revenue}</div>
-                  <div className={`growth-col ${item.growth === 'N/A' ? 'neutral' : ''}`}>
-                    {item.growth !== 'N/A' && <span className="growth-indicator"></span>}
-                    {item.growth === 'N/A' ? 'Base Year' : item.growth}
-                  </div>
-                  <div className="status-col">
-                    <span className={`status-dot ${item.label.toLowerCase()}`}></span>
-                    {item.label}
-                  </div>
+      <section className="hp-financials">
+        <div className="hp-container">
+          <div className="hp-fin-inner">
+            <div className="hp-fin-content">
+              {/* Table Controls / Copy */}
+              <div className="hp-fin-controls">
+                <div>
+                  <span className="hp-fin-label">Audited Fiscal Data History</span>
+                  <p className="hp-fin-note">
+                    Official financial performance records of SSE Workforce Services Pvt Ltd since our base year in 2011.
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            <p className="finance-footer-note">
-              * Figures represented in Indian Crores (Cr). Full audit reports available upon request.
-            </p>
+              {/* Polished Table */}
+              <table className="hp-fin-table">
+                <thead>
+                  <tr>
+                    <th>Fiscal Year</th>
+                    <th>Revenue</th>
+                    <th>YoY Growth</th>
+                    <th>Verification</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {financialData.map((item, i) => (
+                    <tr key={i}>
+                      <td className="hp-fin-year">{item.year}</td>
+                      <td className="hp-fin-revenue">{item.revenue}</td>
+                      <td>
+                        <span className={`hp-fin-growth ${item.growth === 'N/A' ? 'neutral' : ''}`}>
+                          <span className="hp-fin-growth-arrow" />
+                          {item.growth === 'N/A' ? 'Base Year' : item.growth}
+                        </span>
+                      </td>
+                      <td>
+                        <span className="hp-fin-status">
+                          <span className="hp-fin-dot" />
+                          {item.label}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <p className="hp-fin-footer">
+                * Figures represented in Indian Crores (Cr). All statements are verified by independent chartered accountants. Full audited reports are available to partners upon request.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

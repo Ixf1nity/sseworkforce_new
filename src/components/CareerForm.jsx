@@ -87,20 +87,20 @@ function CareerForm() {
 
   return (
     <>
-      <div className="sse-form-container">
+      <div className="hp-form-card">
         {/* Header */}
-        <div className="sse-form-header">
+        <div className="hp-form-header">
           <h2>Apply for a Position</h2>
           <p>Fill out the form below to apply for current openings</p>
         </div>
 
         {/* Form Body */}
-        <div className="sse-form-body">
+        <div className="hp-form-body">
           <form onSubmit={handleSubmit} noValidate>
-            <div className="sse-form-grid">
+            <div className="hp-form-grid">
 
               {/* Full Name */}
-              <div className="sse-form-group sse-half-width">
+              <div className="hp-form-group hp-form-full-width">
                 <label>Full Name</label>
                 <input
                   type="text"
@@ -108,14 +108,14 @@ function CareerForm() {
                   placeholder="Enter your full name"
                   value={formData.full_name}
                   onChange={handleChange}
-                  className={errors.full_name ? 'input-error' : ''}
+                  className={`hp-form-control ${errors.full_name ? 'is-invalid' : ''}`}
                   required
                 />
-                {errors.full_name && <span className="field-error">{errors.full_name}</span>}
+                {errors.full_name && <span className="hp-form-error">{errors.full_name}</span>}
               </div>
 
               {/* Email */}
-              <div className="sse-form-group sse-half-width">
+              <div className="hp-form-group">
                 <label>Email Address</label>
                 <input
                   type="email"
@@ -123,14 +123,14 @@ function CareerForm() {
                   placeholder="example@mail.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className={errors.email ? 'input-error' : ''}
+                  className={`hp-form-control ${errors.email ? 'is-invalid' : ''}`}
                   required
                 />
-                {errors.email && <span className="field-error">{errors.email}</span>}
+                {errors.email && <span className="hp-form-error">{errors.email}</span>}
               </div>
 
               {/* Phone */}
-              <div className="sse-form-group sse-half-width">
+              <div className="hp-form-group">
                 <label>Phone Number</label>
                 <input
                   type="tel"
@@ -139,31 +139,31 @@ function CareerForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   maxLength="10"
-                  className={errors.phone ? 'input-error' : ''}
+                  className={`hp-form-control ${errors.phone ? 'is-invalid' : ''}`}
                   required
                 />
-                {errors.phone && <span className="field-error">{errors.phone}</span>}
+                {errors.phone && <span className="hp-form-error">{errors.phone}</span>}
               </div>
 
               {/* Gender */}
-              <div className="sse-form-group">
+              <div className="hp-form-group">
                 <label>Gender</label>
                 <select
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
-                  className={errors.gender ? 'input-error' : ''}
+                  className={`hp-form-control ${errors.gender ? 'is-invalid' : ''}`}
                   required
                 >
                   <option value="" disabled>Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
-                {errors.gender && <span className="field-error">{errors.gender}</span>}
+                {errors.gender && <span className="hp-form-error">{errors.gender}</span>}
               </div>
 
               {/* Age */}
-              <div className="sse-form-group">
+              <div className="hp-form-group">
                 <label>Age</label>
                 <input
                   type="number"
@@ -173,20 +173,20 @@ function CareerForm() {
                   max="60"
                   value={formData.age}
                   onChange={handleChange}
-                  className={errors.age ? 'input-error' : ''}
+                  className={`hp-form-control ${errors.age ? 'is-invalid' : ''}`}
                   required
                 />
-                {errors.age && <span className="field-error">{errors.age}</span>}
+                {errors.age && <span className="hp-form-error">{errors.age}</span>}
               </div>
 
               {/* Qualification */}
-              <div className="sse-form-group sse-half-width">
+              <div className="hp-form-group hp-form-full-width">
                 <label>Highest Qualification</label>
                 <select
                   name="qualification"
                   value={formData.qualification}
                   onChange={handleChange}
-                  className={errors.qualification ? 'input-error' : ''}
+                  className={`hp-form-control ${errors.qualification ? 'is-invalid' : ''}`}
                   required
                 >
                   <option value="" disabled>Choose Qualification</option>
@@ -194,25 +194,27 @@ function CareerForm() {
                     <option key={q} value={q}>{q}</option>
                   ))}
                 </select>
-                {errors.qualification && <span className="field-error">{errors.qualification}</span>}
+                {errors.qualification && <span className="hp-form-error">{errors.qualification}</span>}
               </div>
 
               {/* Additional Note */}
-              <div className="sse-form-group sse-full-width">
+              <div className="hp-form-group hp-form-full-width">
                 <label>Additional Note / Experience</label>
                 <textarea
                   name="additional_note"
                   placeholder="Describe your relevant experience or additional notes..."
                   value={formData.additional_note}
                   onChange={handleChange}
+                  className="hp-form-control"
+                  style={{ minHeight: '120px', resize: 'none' }}
                 />
               </div>
 
             </div>
 
             {/* Submit */}
-            <div className="sse-submit-btn">
-              <button type="submit" disabled={submitting}>
+            <div className="hp-form-submit-wrap">
+              <button type="submit" className="hp-form-btn" disabled={submitting}>
                 {submitting ? 'Submitting...' : 'Submit Application'}
               </button>
             </div>

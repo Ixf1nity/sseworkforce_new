@@ -77,94 +77,85 @@ function ContactForm() {
   return (
     <>
       <form onSubmit={handleSubmit} noValidate>
-        <div className="row justify-content-center g-4">
+        <div className="hp-form-grid">
           {/* Full Name */}
-          <div className="col-lg-6 col-md-12">
-            <div className="form-group">
-              <label>Full Name *</label>
-              <input
-                type="text"
-                name="full_name"
-                className={`form-control ${errors.full_name ? 'is-invalid' : ''}`}
-                placeholder="Enter Full Name"
-                value={formData.full_name}
-                onChange={handleChange}
-                required
-              />
-              {errors.full_name && <div className="invalid-feedback">{errors.full_name}</div>}
-            </div>
+          <div className="hp-form-group">
+            <label>Full Name *</label>
+            <input
+              type="text"
+              name="full_name"
+              className={`hp-form-control ${errors.full_name ? 'is-invalid' : ''}`}
+              placeholder="Enter Full Name"
+              value={formData.full_name}
+              onChange={handleChange}
+              required
+            />
+            {errors.full_name && <span className="hp-form-error">{errors.full_name}</span>}
           </div>
 
           {/* Phone */}
-          <div className="col-lg-6 col-md-12">
-            <div className="form-group">
-              <label>Contact Number *</label>
-              <input
-                type="tel"
-                name="phone"
-                className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
-                placeholder="Enter Contact Number"
-                value={formData.phone}
-                onChange={handleChange}
-                maxLength="10"
-                required
-              />
-              {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
-            </div>
+          <div className="hp-form-group">
+            <label>Contact Number *</label>
+            <input
+              type="tel"
+              name="phone"
+              className={`hp-form-control ${errors.phone ? 'is-invalid' : ''}`}
+              placeholder="Enter Contact Number"
+              value={formData.phone}
+              onChange={handleChange}
+              maxLength="10"
+              required
+            />
+            {errors.phone && <span className="hp-form-error">{errors.phone}</span>}
           </div>
 
           {/* Email */}
-          <div className="col-lg-6 col-md-12">
-            <div className="form-group">
-              <label>Email Address *</label>
-              <input
-                type="email"
-                name="email"
-                className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                placeholder="Enter Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-            </div>
+          <div className="hp-form-group">
+            <label>Email Address *</label>
+            <input
+              type="email"
+              name="email"
+              className={`hp-form-control ${errors.email ? 'is-invalid' : ''}`}
+              placeholder="Enter Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <span className="hp-form-error">{errors.email}</span>}
           </div>
 
           {/* Subject */}
-          <div className="col-lg-6 col-md-12">
-            <div className="form-group">
-              <label>Subject</label>
-              <input
-                type="text"
-                name="subject"
-                className="form-control"
-                placeholder="Enter Subject"
-                value={formData.subject}
-                onChange={handleChange}
-              />
-            </div>
+          <div className="hp-form-group">
+            <label>Subject</label>
+            <input
+              type="text"
+              name="subject"
+              className="hp-form-control"
+              placeholder="Enter Subject"
+              value={formData.subject}
+              onChange={handleChange}
+            />
           </div>
 
           {/* Message */}
-          <div className="col-lg-12 col-md-12">
-            <div className="form-group">
-              <label>Message *</label>
-              <textarea
-                name="message"
-                className={`form-control ${errors.message ? 'is-invalid' : ''}`}
-                placeholder="Enter your message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-              {errors.message && <div className="invalid-feedback">{errors.message}</div>}
-            </div>
+          <div className="hp-form-group hp-form-full-width">
+            <label>Message *</label>
+            <textarea
+              name="message"
+              className={`hp-form-control ${errors.message ? 'is-invalid' : ''}`}
+              placeholder="Enter your message"
+              value={formData.message}
+              onChange={handleChange}
+              style={{ minHeight: '120px', resize: 'none' }}
+              required
+            />
+            {errors.message && <span className="hp-form-error">{errors.message}</span>}
           </div>
 
           {/* Submit */}
-          <div className="col-lg-12 col-md-12">
-            <button type="submit" className="default-btn" disabled={submitting}>
-              {submitting ? 'Sending...' : 'Submit'}
+          <div className="hp-form-full-width" style={{ marginTop: '16px' }}>
+            <button type="submit" className="hp-form-btn" disabled={submitting}>
+              {submitting ? 'Sending...' : 'Submit Message'}
             </button>
           </div>
         </div>

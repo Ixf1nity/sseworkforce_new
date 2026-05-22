@@ -24,26 +24,34 @@ function Gallery() {
   ];
 
   return (
-    <>
+    <div className="hp-home">
       <PageBanner title="Gallery" breadcrumbs={[{ label: 'Gallery' }]} />
 
-      <div className="ptb-120">
-        <div className="container">
-          <div className="section-title text-center mb-5">
-            <span className="sub wrap2">Our Gallery</span>
-            <h2 className="title-animation">Visual Journey of SSE Workforce</h2>
+      <section className="hp-gallery-section">
+        <div className="hp-container">
+          <div className="hp-section-header" style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <p className="hp-section-eyebrow">Our Gallery</p>
+            <h2 className="hp-section-title">Visual Journey of SSE Workforce</h2>
+            <p className="hp-section-subtitle">
+              A glimpse into our daily industrial operations, custom fabrication workshops, and highly trained technical manpower teams.
+            </p>
           </div>
 
-          <div className="gallery-grid">
+          <div className="hp-gallery-grid">
             {images.map((img, i) => (
-              <div key={i} className="gallery-item">
-                <img src={img.src} loading="lazy" alt={img.alt} />
+              <div key={i} className="hp-gallery-card">
+                <div className="hp-gallery-image-wrapper">
+                  <img src={img.src} loading="lazy" alt={img.alt} />
+                  <div className="hp-gallery-overlay">
+                    <span className="hp-gallery-tag">SSE Operations</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }
 
