@@ -20,9 +20,9 @@ function About() {
   const marqueeItems = [
     { icon: 'fa fa-building', text: 'SSE Workforce Services Pvt Ltd' },
     { icon: 'fa fa-calendar', text: '15+ Years Experience' },
-    { icon: 'fa fa-industry', text: '15+ Industry Sectors' },
-    { icon: 'fa fa-handshake', text: '100+ Companies Served' },
-    { icon: 'fa fa-users', text: 'Skilled Workforce Team' },
+    { icon: 'fa fa-industry', text: '20+ Industry Served' },
+    { icon: 'fa fa-handshake', text: '25+ Companies Served' },
+    { icon: 'fa fa-users', text: '3000+ Skilled Workforce Strength' },
     { icon: 'fa fa-thumbs-up', text: 'High Client Retention' },
   ];
 
